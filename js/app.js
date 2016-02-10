@@ -74,15 +74,17 @@ function storeGuess(guessValue) {
 function giveHints(computerChoice, guessValue) {
     var difference = Math.abs(computerChoice - guessValue);
     if (difference >= 50) {
-        $('#feedback').text("You are frozen cold!");
-    } else if ((difference < 50) && (difference >= 30)) {
-        $('#feedback').text("You are cold!");
+        $('#feedback').text("You are Antartica levels of cold!");
+    } else if ((difference < 50) && (difference >= 40)) {
+        $('#feedback').text("You are Norwegian winter levels of cold!");
+    } else if ((difference < 40) && (difference >= 30)) {
+        $('#feedback').text("You are put a sweater on levels of chilly!");
     } else if ((difference < 30) && (difference >= 20)) {
-        $('#feedback').text("You are warm!");
+        $('#feedback').text("You are summer evening levels of warm!");
     } else if ((difference < 20) && (difference >= 10)) {
-        $('#feedback').text("You are hot!");
+        $('#feedback').text("You are on the equator levels of hot!");
     } else if ((difference < 10) && (difference >= 1)) {
-        $('#feedback').text("You are very hot!");
+        $('#feedback').text("You are inside of an oven hot!");
     } else {
         $('#feedback').text("You won! Well done.");
         $('#guessButton').prop('disabled', true);
@@ -94,7 +96,7 @@ function relativeHints(computerChoice, oldGuess, newGuess) {
     var oldDiff = Math.abs(oldGuess - computerChoice);
     var newDiff = Math.abs(newGuess - computerChoice);
     if (oldDiff > newDiff) {
-        $('#relative-feedback').text("You are warmer!");
+        $('#relative-feedback').text("You are getting warmer!");
     } else if (oldDiff < newDiff) {
         $('#relative-feedback').text("You are getting colder!");
     } else {
