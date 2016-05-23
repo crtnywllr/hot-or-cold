@@ -28,26 +28,26 @@ function checkGuess() {
     //alert('I have activated function checkGuess');
     var guessValue = $('#userGuess').val();
     var newGuess = guessValue;
-    var guessValueCorrect = true;
+    var guessValueValid = true;
     if (Math.floor(guessValue) != (guessValue)) {
         var guessValue = alert("Please don't enter letters or symbols - try a number between 1 and 100.");
-        guessValueCorrect = false;
+        guessValueValid = false;
     }
     if (guessValue.indexOf('.') >= 0) {
         var guessValue = alert('No decimals, please! Try a whole number between 1 and 100.');
-        guessValueCorrect = false;
+        guessValueValid = false;
     }
 
     if (guessValue.indexOf(' ') >= 0) {
         var guessValue = alert("Please don't enter spaces - try a number!");
-        guessValueCorrect = false;
+        guessValueValid = false;
     }
 
     if (guessValue < 1 || guessValue > 100) {
         var guessValue = alert("Please enter only numbers between 1 and 100.");
-        guessValueCorrect = false;
+        guessValueValid = false;
     }
-    if (guessValueCorrect == true) {
+    if (guessValueValid == true) {
         guessCount(counter);
         storeGuess(guessValue);
         giveHints(computerChoice, guessValue);
@@ -83,8 +83,10 @@ function giveHints(computerChoice, guessValue) {
         $('#feedback').text("You are summer evening levels of warm!");
     } else if ((difference < 20) && (difference >= 10)) {
         $('#feedback').text("You are on the equator levels of hot!");
-    } else if ((difference < 10) && (difference >= 1)) {
+    } else if ((difference < 10) && (difference >= 5)) {
         $('#feedback').text("You are inside of an oven hot!");
+    } else if ((difference < 5) && (difference >= 1)) {
+        $('#feedback').text("You are on fire!");
     } else {
         $('#feedback').text("You won! Well done.");
         $('#guessButton').prop('disabled', true);
@@ -127,9 +129,8 @@ $(document).ready(function () {
     $("a.close").click(function () {
         $(".overlay").fadeOut(1000);
     });
-
-
 });
+
 $(document).on('keypress', function (key) {
     //keyCode == 13 is the ENTER key
     if (key.keyCode == 13) {
